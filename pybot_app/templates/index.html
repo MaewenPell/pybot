@@ -2,7 +2,6 @@
 <html lang="en">
 
 <head>
-    <!-- Required meta tags -->
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 
@@ -13,79 +12,80 @@
     <title>The Pybot app</title>
 </head>
 
-<header>
-    <div class='container-fluid bg-light'>
-        <div class='col-2 mx-auto'>
-            <img src="{{ url_for('static', filename='imgs/logo.png') }}" class='img-fluid' alt="logo">
-        </div>
-
-        <div class='row'>
-            <div class="mx-auto my-3">Please enter a name and Pybot will look into the internet to find
-                information about it !
-            </div>
-        </div>
-    </div>
-</header>
-
 <body class='bg-light'>
     <div class='row d-flex justify-content-center bg-light col-10 mx-auto'>
         <div class="container container-fluid">
-            <form>
-                <div class="form-group text-center col-8 mx-auto my-5">
-                    <label for="EnterPlace">Enter a place name</label>
-                    <input type="text" class="form-control" id="place" aria-describedby="enterPlaceAria">
-                    <button type="submit" class="btn btn-primary">Submit</button>
+            <header>
+                <div class='col-2 mx-auto'>
+                    <img src="{{ url_for('static', filename='imgs/logo.png') }}" class='img-fluid' alt="logo">
                 </div>
-            </form>
+
+                <div class='row'>
+                    <div class="mx-auto my-3">Please enter a name and Pybot will look into the internet to find
+                        information about it !
+                    </div>
+                </div>
+            </header>
         </div>
 
-        <section class="my-5">
+
+        <section class="my-5 col-8" id='chat-area'>
             <div class="row">
-                <div class="col-10">
-                    <div class="col-2 logo-pybot">
-                        <img class="img-fluid" src="{{ url_for('static', filename='imgs/ai.svg') }}" alt="BotImage">
-                    </div>
+                <div class="col-2 logo-pybot">
+                    <img class="img-fluid" src="{{ url_for('static', filename='imgs/ai.svg') }}" alt="BotImage">
+                </div>
+                <div class="col-6">
+                    <!-- Post title -->
+                    <h3 class="font-weight-bold mb-3 botName">Pybot</h3>
+                    <!-- Subtitle-->
+                    <h6 class="brown-text font-weight-bold mb-3 text-info"><i class="fas fa-utensils pr-2"></i>Internet
+                        guide</h6>
+                    <!-- Text -->
+                    <p class='botTalk justify-content-center'>
+                        Welcome !
+                        All you have to do is enter a location and i'll look into the internet to give you all the
+                        information you need !
 
-                    <div class="col-8">
-                        <!-- Post title -->
-                        <h3 id="BotDiv" class="font-weight-bold mb-3"><strong>Pybot</strong></h3>
-                        <!-- Subtitle-->
-                        <h6 class="brown-text font-weight-bold mb-3 text-info"><i
-                                class="fas fa-utensils pr-2"></i>Internet guide</h6>
-                        <!-- Text -->
-                        <p class='botTalk'>
-                            Welcome !
-                            All you have to do is enter a location and i'll look into the internet to give you all the
-                            information you need !
-
-                            Enjoy !
-                        </p>
-                    </div>
+                        Enjoy !
+                    </p>
                 </div>
             </div>
+
         </section>
-    </div>
 
-    <div class="bg-light">
-        <div class="container">
+
+
+        <div class="container container-fluid">
             <div class="row">
-                <nav class="col">
-                    <ul class="list-inline text-center">
-                        <li class="list-inline-item"><a class="nav-link" href="#">À propos</a></li>
-                        <li class="list-inline-item">&middot;</li>
-                        <li class="list-inline-item"><a class="nav-link" href="#">Auteur</a></li>
-                        <li class="list-inline-item">&middot;</li>
-                        <li class="list-inline-item"><a class="nav-link" href="#">GitHub</a></li>
-                    </ul>
-                </nav>
+                <form id='NewItemForm' class="mx-auto">
+                    <div class="form-group text-center col-10 mx-auto">
+                        <label for="EnterPlace">Enter a place name</label>
+                        <input type="text" class="form-control" id="place">
+                        <button type="submit" class="btn btn-primary my-2">Submit</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
 
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <div class="container container-fluid bg-dark col-10">
+        <footer>
+            <nav>
+                <ul class="list-inline text-center">
+                    <li class="list-inline-item"><a class="nav-link" href="#">À propos</a></li>
+                    <li class="list-inline-item">&middot;</li>
+                    <li class="list-inline-item"><a class="nav-link" href="#">Auteur</a></li>
+                    <li class="list-inline-item">&middot;</li>
+                    <li class="list-inline-item"><a class="nav-link" href="#">GitHub</a></li>
+                </ul>
+            </nav>
+        </footer>
+    </div>
+    <!-- jQuery first -->
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
         integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous">
     </script>
+    <script src={{ url_for('static', filename='js/script.js') }}> </script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
         integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
     </script>
