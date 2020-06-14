@@ -13,6 +13,7 @@
 </head>
 
 <body class='bg-light'>
+
     <div class='row d-flex justify-content-center bg-light col-10 mx-auto'>
         <div class="container container-fluid">
             <header>
@@ -29,17 +30,18 @@
         </div>
 
 
-        <section class="my-5 col-8" id='chat-area'>
+        <div class="my-5 col-10 mh-100" id='chat-area'>
             <div class="row">
-                <div class="col-2 logo-pybot">
+                <div class="col-2" id='logo-pybot'>
                     <img class="img-fluid" src="{{ url_for('static', filename='imgs/ai.svg') }}" alt="BotImage">
                 </div>
                 <div class="col-6">
                     <!-- Post title -->
                     <h3 class="font-weight-bold mb-3 botName">Pybot</h3>
                     <!-- Subtitle-->
-                    <h6 class="brown-text font-weight-bold mb-3 text-info"><i class="fas fa-utensils pr-2"></i>Internet
-                        guide</h6>
+                    <h6 class="brown-text font-weight-bold mb-3 text-info">Internet
+                        guide
+                    </h6>
                     <!-- Text -->
                     <p class='botTalk justify-content-center'>
                         Welcome !
@@ -50,8 +52,7 @@
                     </p>
                 </div>
             </div>
-
-        </section>
+        </div>
 
 
 
@@ -66,9 +67,10 @@
                 </form>
             </div>
         </div>
+
     </div>
 
-    <div class="container container-fluid bg-dark col-10">
+    <div class="container container-fluid bg-dark col-10 fixed-bottom">
         <footer>
             <nav>
                 <ul class="list-inline text-center">
@@ -85,7 +87,7 @@
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
         integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous">
     </script>
-    <script src={{ url_for('static', filename='js/script.js') }}> </script>
+    <script src='static/js/script.js'> </script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
         integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
     </script>
