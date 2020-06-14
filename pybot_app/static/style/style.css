@@ -4,5 +4,6 @@ body {
 }
 
 #chat-area {
-    overflow-y: auto;
+    max-height: 400px;
+    overflow-y: scroll;
 }
