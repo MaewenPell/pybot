@@ -5,18 +5,23 @@ $(document).ready(function(){
   bot_image = 'static/imgs/ai.svg'
 
   $('#NewItemForm').on('submit', function (e) {
-    e.preventDefault();
     text = $('input:text').val();
+
+    $.ajax({
+      data : text,
+      type : 'POST',
+      url : '/process'
+    }).done(function() {
+      console.log('Done')
+    });
 
     display_new('User', 'Bonjour je voudrais des info sur ceci : ' + text,
                 image_user, chat_area)
 
-    // Parsing the query
-    // Processing with the API 
-
-    bot_reply('Here are the informations : ' + text, bot_image, chat_area)
+    bot_reply('Here are the informations : ' + text, bot_image, chat_area);
 
     $('input:text').val('');
+    e.preventDefault();
   });
 
 });
