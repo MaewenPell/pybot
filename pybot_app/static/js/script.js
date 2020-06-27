@@ -1,5 +1,6 @@
 $(document).ready(function(){
   var chat_area, text, image_user, bot_image;
+  var map;
   chat_area = $('#chat-area');
   image_user = 'static/imgs/user.svg'
   bot_image = 'static/imgs/ai.svg'
@@ -22,8 +23,8 @@ $(document).ready(function(){
 
     $('input:text').val('');
     e.preventDefault();
+    initMap()
   });
-
 });
 
 function display_new(name, text, img, place) {
@@ -62,4 +63,24 @@ function bot_reply(text, img, place) {
                   'text': 'Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, \
                              consectetur, adipisci velit' })
     )).appendTo(place);
+}
+
+// Initialize and add the map
+function initMap() {
+  // The location of Uluru
+  var uluru = {
+    lat: -25.344,
+    lng: 131.036
+  };
+  // The map, centered at Uluru
+  var map = new google.maps.Map(
+    document.getElementById('map'), {
+    zoom: 4,
+    center: uluru
+  });
+  // The marker, positioned at Uluru
+  var marker = new google.maps.Marker({
+    position: uluru,
+    map: map
+  });
 }
