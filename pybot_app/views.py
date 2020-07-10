@@ -1,5 +1,6 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, jsonify
 from .actions.parsing import Parser
+
 
 app = Flask(__name__)
 
@@ -22,7 +23,5 @@ def process():
         finally append the usefull words to create a query
     '''
     query = request.get_data(as_text=True)
-    print(query)
     filtered_query = parser.filter_words(query)
-    print(filtered_query)
-    return render_template('index.html', filtered_query=filtered_query)
+    return jsonify(query)
