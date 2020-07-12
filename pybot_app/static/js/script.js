@@ -17,8 +17,11 @@ $(document).ready(function(){
       type : 'POST',
       url : '/process',
       success : function (data) {
-        bot_reply('Here are the informations for : ' + data, bot_image, chat_area);
-        codeAdress(data, map)
+        console.log(data)
+        query = data[0]
+        information = data[1]
+        bot_reply('Here are the informations for : ' + information, bot_image, chat_area);
+        codeAdress(query, map)
       }
     });
 
@@ -82,6 +85,7 @@ function codeAdress(query, map) {
   var geocoder = new google.maps.Geocoder();
   geocoder.geocode( {'address': address }, function(results, status) {
     if (status == 'OK') {
+      console.log(results[0])
       map.setCenter(results[0].geometry.location);
       var marker = new google.maps.Marker({
         map: map,
