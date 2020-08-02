@@ -1,11 +1,12 @@
 $(document).ready(function(){
   var chat_area, query, image_user, bot_image;
+  var lat, lng
   var map;
   
   chat_area = $('#chat-area');
   image_user = 'static/imgs/user.svg'
   bot_image = 'static/imgs/ai.svg'
-  map = initMap()
+  map = initMap();
 
   $('#NewItemForm').on('submit', function (e) {
     e.preventDefault();
@@ -17,11 +18,12 @@ $(document).ready(function(){
       type : 'POST',
       url : '/process',
       success : function (data) {
-        console.log(data)
         query = data[0]
         information = data[1]
+        lat = data[2]
+        lng = data[3]
         bot_reply('Here are the informations for : ' + information, bot_image, chat_area);
-        codeAdress(query, map)
+        updateMap(lat, lng, map);
       }
     });
 
@@ -76,24 +78,14 @@ function initMap() {
   }
   map = new google.maps.Map(
     document.getElementById('map'), mapOptions);
-  
     return map
 }
 
-function codeAdress(query, map) {
-  var address = query;
-  var geocoder = new google.maps.Geocoder();
-  geocoder.geocode( {'address': address }, function(results, status) {
-    if (status == 'OK') {
-      console.log(results[0])
-      map.setCenter(results[0].geometry.location);
-      var marker = new google.maps.Marker({
-        map: map,
-        position: results[0].geometry.location
-      });
-    } else {
-      alert('Geocode was not successful for the following reason: ' + status);
-    }
+function updateMap(lat, lng, map) {
+  var LatLng = new google.maps.LatLng(lat, lng);
+  map.setCenter(LatLng);
+  var marker = new google.maps.Marker({
+    map: map,
+    position : LatLng
   });
 }
-

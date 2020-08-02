@@ -6,8 +6,9 @@ from .actions.api_request_wiki import ApiRequester
 app = Flask(__name__)
 app.config.from_object('config')
 
-parser = Parser(app.config['MAPS_API_KEY'])
-wiki = ApiRequester()
+parser = Parser()
+api_requester = ApiRequester()
+
 
 @app.route('/')
 @app.route('/index/')
@@ -22,8 +23,15 @@ def process():
         parse it to get rid of the stop word
         finally append the usefull words to create a query
     '''
+    # Get the query from the user input
     query = request.get_data(as_text=True)
-    # filtered_query = parser.filter_words(str(query))
-    informations = wiki.get_data(query)
+    # Parse the query to retrieve the essentials words
+    filtered_query = parser.filter_words(str(query))
+    print(f"Filtered query = {filtered_query}")
+    # Get the position for the query
+    lat, lng = api_requester.get_geocode(filtered_query)
+    # Trigger the Wiki API to get informations about the location
+    informations = api_requester.get_data_wiki(filtered_query)
 
-    return jsonify(query, informations)
+    # Return the differents informations in a JSON format
+    return jsonify(query, informations, lat, lng)
