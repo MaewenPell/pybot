@@ -11,7 +11,7 @@ $(document).ready(function(){
   $('#NewItemForm').on('submit', function (e) {
     e.preventDefault();
     query = $('input:text').val();
-    display_new('User', 'Hey PyBot ! Please give me information on : ' + query,
+    display_new('User' + query,
       image_user, chat_area)
     $.ajax({
       data : query,
@@ -22,7 +22,7 @@ $(document).ready(function(){
         information = data[1]
         lat = data[2]
         lng = data[3]
-        bot_reply('Here are the informations for : ' + information, bot_image, chat_area);
+        bot_reply('Voila les resultats' + information, bot_image, chat_area);
         updateMap(lat, lng, map);
       }
     });

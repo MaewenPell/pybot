@@ -1,7 +1,6 @@
 import requests
 from config import MAPS_API_KEY
 
-
 class ApiRequester():
     '''
         Create the differents request for the external API
