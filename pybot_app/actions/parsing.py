@@ -1,9 +1,9 @@
-from .list_stop_words import list_
+from .list_stop_words import ListStopWords
 
 
 class Parser():
     def __init__(self):
-        self.stop_words = list_
+        self.list = ListStopWords()
 
     def filter_words(self, query):
         ''' Parse the query to get the usefull words
@@ -16,6 +16,6 @@ class Parser():
         query = query.split(' ')
         query[0].lower()
         for word in query[-4:]:
-            if word not in list_:
+            if word not in self.list.return_list():
                 usefull_words.append(word)
         return usefull_words[0]

@@ -2,11 +2,18 @@ $(document).ready(function(){
   var chat_area, query, image_user, bot_image;
   var lat, lng
   var map;
+  var LatLng
+  var marker
   
   chat_area = $('#chat-area');
   image_user = 'static/imgs/user.svg'
   bot_image = 'static/imgs/ai.svg'
   map = initMap();
+  LatLng = new google.maps.LatLng(0, 0);
+  var marker = new google.maps.Marker({
+    map: map,
+    position: LatLng
+  });
 
   $('#NewItemForm').on('submit', function (e) {
     e.preventDefault();
@@ -23,7 +30,7 @@ $(document).ready(function(){
         lat = data[2]
         lng = data[3]
         bot_reply('Voila les resultats' + information, bot_image, chat_area);
-        updateMap(lat, lng, map);
+        updateMap(lat, lng, map, marker);
       }
     });
 
@@ -71,21 +78,19 @@ function bot_reply(text, img, place) {
 
 // Initialize and add the map
 function initMap() {
-  var latlng = new google.maps.LatLng(-34.397, 150.644);
+  var LatLng = new google.maps.LatLng(-34.397, 150.644);
   var mapOptions = {
     zoom : 8,
-    center : latlng
+    center : LatLng
   }
   map = new google.maps.Map(
     document.getElementById('map'), mapOptions);
     return map
 }
 
-function updateMap(lat, lng, map) {
-  var LatLng = new google.maps.LatLng(lat, lng);
+function updateMap(lat, lng, map, marker) {
+  LatLng = new google.maps.LatLng(lat, lng);
+  marker.setPosition(LatLng)
   map.setCenter(LatLng);
-  var marker = new google.maps.Marker({
-    map: map,
-    position : LatLng
-  });
+  marker.setMap(map)
 }

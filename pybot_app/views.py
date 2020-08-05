@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request, jsonify
 from .actions.parsing import Parser
-from .actions.api_request_wiki import ApiRequester
+from .actions.api_requester import ApiRequester
 
 
 app = Flask(__name__)

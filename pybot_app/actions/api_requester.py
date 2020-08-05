@@ -1,6 +1,7 @@
 import requests
 from config import MAPS_API_KEY
 
+
 class ApiRequester():
     '''
         Create the differents request for the external API
@@ -9,6 +10,14 @@ class ApiRequester():
     def __init__(self):
         self.base_url_wiki = "https://fr.wikipedia.org/w/api.php"
         self.base_url_map = "https://maps.googleapis.com/maps/api/geocode/json"
+        self.params_wiki = {'format': 'json',
+                            'action': 'query',
+                            'prop': 'extracts',
+                            'exintro': 1,
+                            'explaintext': 1,
+                            'redirects': 1,
+                            'titles': 'query',
+                            }
 
     def get_data_wiki(self, query):
         """[summary]
@@ -20,15 +29,9 @@ class ApiRequester():
         Returns:
             information [str]: [Wiki paragraph]
         """
+        self.params_wiki["titles"] = query
         r = requests.get(self.base_url_wiki,
-                         params={'format': 'json',
-                                 'action': 'query',
-                                 'prop': 'extracts',
-                                 'exintro': 1,
-                                 'explaintext': 1,
-                                 'redirects': 1,
-                                 'titles': query,
-                                 })
+                         params=self.params_wiki)
         if r.status_code != 200:
             information = f'Error accessing API ressource : {r.status_code}'
         else:
@@ -38,7 +41,6 @@ class ApiRequester():
                     information = 'No data found with this request'
                 else:
                     information = r['query']['pages'][elem]['extract']
-
         return information
 
     def get_geocode(self, address):
