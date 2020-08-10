@@ -27,11 +27,15 @@ def process():
     query = request.get_data(as_text=True)
     # Parse the query to retrieve the essentials words
     filtered_query = parser.filter_words(str(query))
-    print(f"Filtered query = {filtered_query}")
-    # Get the position for the query
-    lat, lng = api_requester.get_geocode(filtered_query)
-    # Trigger the Wiki API to get informations about the location
-    informations = api_requester.get_data_wiki(filtered_query)
+    if filtered_query != "empty":
+        print(f"Filtered query = {filtered_query}")
+        # Get the position for the query
+        lat, lng, _ = api_requester.get_geocode(filtered_query)
+        # Trigger the Wiki API to get informations about the location
+        informations = api_requester.get_data_wiki(filtered_query)
+    else:
+        lat, lng = 0, 0
+        informations = "Sorry you provides an empty request"
 
     # Return the differents informations in a JSON format
     return jsonify(query, informations, lat, lng)

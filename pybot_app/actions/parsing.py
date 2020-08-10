@@ -10,12 +10,15 @@ class Parser():
             input : user_query(list) or str
             @return : list of words not in stop_word list
         '''
-        usefull_words = []
-        query = query.replace("-", " ")
-        query = query.replace("'", " ")
-        query = query.split(' ')
-        query[0].lower()
-        for word in query[-4:]:
-            if word not in self.list.return_list():
-                usefull_words.append(word)
-        return usefull_words[0]
+        if query != "":
+            usefull_words = []
+            query = query.replace("-", " ")
+            query = query.replace("'", " ")
+            query = query.split(' ')
+            query[0].lower()
+            for word in query[-4:]:
+                if word not in self.list.return_list():
+                    usefull_words.append(word)
+            return usefull_words[0]
+        else:
+            return "empty"

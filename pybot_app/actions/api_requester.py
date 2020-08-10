@@ -66,4 +66,4 @@ class ApiRequester():
             lat = location['lat']
             lng = location['lng']
 
-        return lat, lng
+        return lat, lng, r
