@@ -77,41 +77,7 @@ function user_query(text, img, place) {
   }
 
 function loading(img, place, gif) {
-  $('<div/>', {
-    'class': 'row'
-  }).append(
-    $('<div/>', {
-      'class': 'col-2',
-      'id': 'logo-bot'
-    }).append(
-      $('<img/>', {
-        'class': 'img-fluid',
-        'src': img,
-        'alt': 'UserImage',
-        'height': '100px',
-        'width': '100px'
-      })),
-
-    $('<div/>', {
-      'class': 'col-6'
-    }).append(
-      $('<h3/>', {
-        'class': 'font-weight-bold mb-3 botName',
-        'text': 'Pybot'
-      }),
-      $('<h6/>', {
-        'class': 'brown-text font-weight-bold mb-3 text-info',
-        'text': 'Internet Guide'
-      }),
-      $('<img/>', {
-        'class': 'img-fluid center',
-        'id': 'loading_gif',
-        'src': gif,
-        'alt': 'Loading',
-        'height': '200px',
-        'width': '200px'
-      })
-    )).appendTo(place);
+  $('<div/>', { })
 }
 
 function bot_reply(text, img, place) {

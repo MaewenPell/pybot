@@ -1,5 +1,4 @@
 body {
-    background-color: #cc8080;
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='4' viewBox='0 0 4 4'%3E%3Cpath fill='%233999d7' fill-opacity='0.4' d='M1 3h1v1H1V3zm2-2h1v1H3V1z'%3E%3C/path%3E%3C/svg%3E");
 }
 
@@ -8,13 +7,32 @@ body {
     overflow-y: scroll;
 }
 
-/* Always set the map height explicitly to define the size of the div
-       * element that contains the map. */
 #map {
     height: 50%;
 }
 
-/* Optional: Makes the sample page fill the window. */
+#bot_talk {
+    background-color: #009A8E;
+}
+
+.loading {
+    align-items: center;
+}
+
+.botName {
+    font-size: 30px;
+    color: #263D42;
+}
+
+.textInfo{
+    color: #FFAB21;
+}
+
+.BotTalk {
+    color: #263D42;
+    font-size: medium;
+}
+
 html,
 body {
     height: 100%;
