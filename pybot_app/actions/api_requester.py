@@ -41,6 +41,9 @@ class ApiRequester():
                     information = 'No data found with this request'
                 else:
                     information = r['query']['pages'][elem]['extract']
+
+        if information == "":
+            information = "Pas d'info sur wikipédia pour cette reqûete :("
         return information
 
     def get_geocode(self, address):

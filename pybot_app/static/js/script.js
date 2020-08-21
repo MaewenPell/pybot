@@ -2,15 +2,17 @@ $(document).ready(function(){
   var chat_area, query, image_user, bot_image;
   var lat, lng
   var map;
+  var map_area
   var LatLng;
   var marker;
-  var gif;
 
   chat_area = $('#chat-area');
-  loading_gif = $('#loading_gif')
-  image_user = 'static/imgs/user.svg'
-  bot_image = 'static/imgs/ai.svg'
-  gif = '/static/imgs/Double_Ring-1s-200px.gif'
+  loading_area = $('#loadingArea');
+  map_area = $('#map');
+  image_user = '/static/imgs/user.svg';
+  bot_image = 'static/imgs/bot.svg';
+  gif = '/static/imgs/Double_Ring-1s-200px.gif';
+  $(map).hide();
   map = initMap();
   LatLng = new google.maps.LatLng(0, 0);
   var marker = new google.maps.Marker({
@@ -30,10 +32,13 @@ $(document).ready(function(){
         information = data[1]
         lat = data[2]
         lng = data[3]
-        user_query(query, image_user, chat_area)
-        loading(bot_image, chat_area, gif)
-        bot_reply('Here is your results ' + information, bot_image, chat_area);
+        user_asking(query, chat_area, image_user)
+        $(loading_area).hide();
+        bot_reply(information, chat_area, bot_image);
         updateMap(lat, lng, map, marker);
+        $(loading_area).appendTo(chat_area)
+        $(loading_area).show();
+        $(map).show();
       }
     });
 
@@ -42,62 +47,36 @@ $(document).ready(function(){
 
 });
 
-function user_query(text, img, place) {
-  $('<div/>', {
-    'class': 'row'
-  }).append(
-    $('<div/>', {
-      'class': 'col-2',
-      'id': 'logo-pybot'
-    }).append(
-      $('<img/>', {
-        'class': 'img-fluid',
-        'src': img,
-        'alt': 'UserImage',
-        'height': '100px',
-        'width': '100px'
-      })),
-
-    $('<div/>', {
-      'class': 'col-6'
-    }).append(
-      $('<h3/>', {
-        'class': 'font-weight-bold mb-3 botName',
-        'text': 'Pybot'
-      }),
-      $('<h6/>', {
-        'class': 'brown-text font-weight-bold mb-3 text-info',
-        'text': 'Internet Guide'
-      }),
-      $('<p/>', {
-        'class': 'UserTalk justify-content-right',
-        'text': text
-      })
-    )).appendTo(place);
-  }
-
-function loading(img, place, gif) {
-  $('<div/>', { })
+function bot_reply(reply, place, img) {
+  var text = "";
+  text += '<div class="row">'
+  text += '<div id="bot_talk_area" class="col-8 rounded my-2 mx-auto">';
+  text += '<h3 class="botName font-weight-bold mb-3 text-center">Pybot</h3>';
+  text += '<h6 class="botInfo brown-text font-weight-bold mb-3 text-center">Internet Guide</h6>';
+  text += '<p>Voila vos résultats :</p>';
+  text += '<p class="botTalk">' + reply + '</p>';
+  text += '</div>';
+  text += "<div class = 'col-2 my-2 mx-auto' id='logo-pybot'>";
+  text += "<img class='img-fluid' src=" + img + " alt='BotImage' height='100' width='100'>";
+  text += "</div>"
+  text += '</div>';
+  $(text).appendTo(place);
 }
 
-function bot_reply(text, img, place) {
-  $('<div/>', { 'class': 'row' }).append(
-    $('<div/>', { 'class': 'col-2', 'id': 'logo-user' }).append(
-      $('<img/>', {
-        'class': 'img-fluid',
-        'src': img,
-        'alt': 'UserImage',
-        'height': '100px',
-        'width': '100px'
-      }
-      )),
 
-    $('<div/>', { 'class': 'col-6' }).append(
-      $('<h3/>', { 'class': 'font-weight-bold mb-3 botName', 'text': 'Pybot' }),
-      $('<h6/>', { 'class': 'brown-text font-weight-bold mb-3 text-info', 'text': 'Internet Guide' }),
-      $('<p/>', { 'class': 'botTalk justify-content-right',
-                  'text': text } )
-    )).appendTo(place);
+function user_asking(query, place, img) {
+  var text = "";
+  text += '<div class="row">'
+  text += "<div class = 'col-2 my-auto' id='logo-user'>";
+  text += "<img class='img-fluid' src=" + img + " alt='UserImage' height='100' width='100'>";
+  text += "</div>"
+  text += '<div id="user_asking_area" class="col-8 rounded my-2 mx-auto">';
+  text += '<h3 class="UserName font-weight-bold mb-3 text-center">User</h3>';
+  text += '<h6 class="UserInfo brown-text font-weight-bold mb-3 text-center"></h6>';
+  text += '<p class="userTalk">'+ query + '</p>';
+  text += '</div>';
+  text += '</div>';
+  $(text).appendTo(place);
 }
 
 // Initialize and add the map

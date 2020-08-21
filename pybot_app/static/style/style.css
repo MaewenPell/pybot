@@ -3,20 +3,26 @@ body {
 }
 
 #chat-area {
-    max-height: 400px;
-    overflow-y: scroll;
+    max-height: 500px;
+    overflow-y: auto;
 }
 
 #map {
     height: 50%;
 }
 
-#bot_talk {
+#bot_talk_area {
     background-color: #009A8E;
+    text-align: center;
+}
+
+#user_asking_area {
+    background-color: #5EE2C5;
 }
 
 .loading {
     align-items: center;
+    text-align: center;
 }
 
 .botName {
@@ -24,13 +30,21 @@ body {
     color: #263D42;
 }
 
-.textInfo{
+.botInfo{
     color: #FFAB21;
 }
 
-.BotTalk {
+.botTalk {
     color: #263D42;
-    font-size: medium;
+}
+
+.UserName {
+    font-size: 30px;
+    color: #263D42;
+}
+
+.UserInfo {
+    color: #FFAB21;
 }
 
 html,

@@ -18,7 +18,6 @@ class TestMockApi:
         results = 48.85837009999999, 2.2944813
 
         def mockreturn(request):
-            # print(results)
             return results
 
         monkeypatch.setattr(self.API, 'get_geocode', mockreturn)

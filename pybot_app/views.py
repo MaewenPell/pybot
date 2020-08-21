@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, jsonify
+from flask import Flask, render_template, request, jsonify, escape
 from .actions.parsing import Parser
 from .actions.api_requester import ApiRequester
 
@@ -24,18 +24,22 @@ def process():
         finally append the usefull words to create a query
     '''
     # Get the query from the user input
-    query = request.get_data(as_text=True)
+    query = escape(request.get_data(as_text=True))
+    print(query)
     # Parse the query to retrieve the essentials words
     filtered_query = parser.filter_words(str(query))
-    if filtered_query != "empty":
-        print(f"Filtered query = {filtered_query}")
-        # Get the position for the query
-        lat, lng, _ = api_requester.get_geocode(filtered_query)
-        # Trigger the Wiki API to get informations about the location
-        informations = api_requester.get_data_wiki(filtered_query)
-    else:
+    try:
+        if filtered_query != "empty":
+            print(f"Filtered query = {filtered_query}")
+            # Get the position for the query
+            lat, lng, _ = api_requester.get_geocode(filtered_query)
+            # Trigger the Wiki API to get informations about the location
+            informations = api_requester.get_data_wiki(filtered_query)
+        else:
+            lat, lng = 0, 0
+            informations = "La reqûete me semble vide ?"
+    except IndexError:
         lat, lng = 0, 0
-        informations = "Sorry you provides an empty request"
-
+        informations = "Je n'ai pas trouvé d'informations pour cette requête"
     # Return the differents informations in a JSON format
     return jsonify(query, informations, lat, lng)

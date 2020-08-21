@@ -32,6 +32,14 @@ class TestParsing:
         return_parser = self.PARSER.filter_words("")
         assert return_parser == "empty"
 
+    def test_remove(self):
+        return_parser = self.PARSER.filter_words("-")
+        assert return_parser == ""
+
+    def test_remove_2(self):
+        return_parser = self.PARSER.filter_words("'")
+        assert return_parser == ""
+
     def test_not_usefull_word(self):
         assert "a" in self.LIST.return_list() \
             and "ô" in self.LIST.return_list()
