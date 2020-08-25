@@ -32,9 +32,12 @@ $(document).ready(function(){
         information = data[1]
         lat = data[2]
         lng = data[3]
+        address = data[4]
+        address_wanted = data[5]
+        info_wanted = data[6]
         user_asking(query, chat_area, image_user)
         $(loading_area).hide();
-        bot_reply(information, chat_area, bot_image);
+        bot_reply(information, chat_area, bot_image, address_wanted, address, info_wanted);
         updateMap(lat, lng, map, marker);
         $(loading_area).appendTo(chat_area)
         $(loading_area).show();
@@ -47,14 +50,23 @@ $(document).ready(function(){
 
 });
 
-function bot_reply(reply, place, img) {
+function bot_reply(reply, place, img, address_wanted, address, info_wanted) {
   var text = "";
   text += '<div class="row">'
   text += '<div id="bot_talk_area" class="col-8 rounded my-2 mx-auto">';
   text += '<h3 class="botName font-weight-bold mb-3 text-center">Pybot</h3>';
   text += '<h6 class="botInfo brown-text font-weight-bold mb-3 text-center">Internet Guide</h6>';
-  text += '<p>Voila vos résultats :</p>';
-  text += '<p class="botTalk">' + reply + '</p>';
+  if (address_wanted == true) {
+    text += "<p>Voila l'adresse demandée :</p>";
+    text += "<p class='botTalk'>" + address + "</p>";
+  }
+  if (info_wanted == true) {
+    text += '<p>Voila vos résultats :</p>';
+    text += '<p class="botTalk">' + reply + '</p>';
+  }
+  if (address_wanted == false && info_wanted == false) {
+    text += "<p> Je ne suis pas sur d'avoir compris la requête ? Voulez vous des informations ou une addresse ?";
+  }
   text += '</div>';
   text += "<div class = 'col-2 my-2 mx-auto' id='logo-pybot'>";
   text += "<img class='img-fluid' src=" + img + " alt='BotImage' height='100' width='100'>";

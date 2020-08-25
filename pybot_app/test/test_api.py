@@ -45,7 +45,7 @@ class TestApi:
         assert fetch_geo[1] == exp_lng
 
     def test_status_code_geo(self):
-        _, _, r = self.API.get_geocode("Nantes")
+        _, _, r, _ = self.API.get_geocode("Nantes")
         assert r['status'] == "OK"
 
     # def test_status_code_wiki(self):

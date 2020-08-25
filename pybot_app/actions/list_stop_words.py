@@ -10,7 +10,8 @@ class ListStopWords():
                     "ailleurs",
                     "adresse",
                     "info",
-                    "informations"
+                    "information",
+                    "informations",
                     "ainsi",
                     "ait",
                     "allaient",
@@ -126,6 +127,8 @@ class ListStopWords():
                     "dans",
                     "de",
                     "debout",
+                    "donne",
+                    "donnes",
                     "dedans",
                     "dehors",
                     "deja",
@@ -567,6 +570,8 @@ class ListStopWords():
                     "une",
                     "unes",
                     "uniformement",
+                    "addresse",
+                    "adresse"
                     "unique",
                     "uniques",
                     "uns",

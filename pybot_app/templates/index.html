@@ -16,7 +16,7 @@
     <div class='row col-12 mx-auto vh-100'>
         <div class="container">
             <div class="row">
-                <div class='col-1 my-auto'>
+                <div class='col-1 my-2'>
                     <img src="{{ url_for('static', filename='imgs/bot.svg') }}" class='img-fluid' alt="logo">
                 </div>
                 <div class="col-10 my-auto">
@@ -36,13 +36,12 @@
                             </p>
                         </div>
                         <div class="col-2 my-auto" id='logo-pybot'>
-                            <img class="img-fluid" src="{{ url_for('static', filename='imgs/bot.svg') }}" alt="BotImage" height="100" ,
-                                width="100">
+                            <img class="img-fluid" src="{{ url_for('static', filename='imgs/bot.svg') }}" alt="BotImage" height="100" width="100">
                         </div>
                     </div>
                     <div class="row" id="loadingArea">
                         <div class='mx-auto my-4 loading'>
-                            <img src="/static/imgs/loading.gif"/>
+                            <img src="/static/imgs/loading.gif" alt="loading gif">
                         </div>
                     </div>
                 </div>
@@ -65,27 +64,23 @@
                         </div>
                     </form>
                 </div>
+            </div>
+        </div>
+        <div id="map" class="col-8 mx-auto">
+        <script async defer src="https://maps.googleapis.com/maps/api/js?key={{ config['MAPS_API_KEY'] }}&callback=initMap"></script>
         </div>
 
-        <row>
-            <div id="map" class="col-8 mx-auto">
-            <script async defer src="https://maps.googleapis.com/maps/api/js?key={{ config['MAPS_API_KEY'] }}&callback=initMap"></script>
-            </div>
-        </row>
-
-        <!-- Footer -->
-        <footer class="page-footer font-small">
-        
-            <!-- Copyright -->
-            <div class="footer-copyright text-center py-3">
+        <footer class="col-12">
+            <div class="text-center py-3" id="copyright">
                 <a href="https://github.com/MaewenPell/pybot">
-                    <img src="{{ url_for('static', filename='imgs/github_mark.png') }}" alt="Github"/>
+                    <img src="{{ url_for('static', filename='imgs/github_mark.png') }}" alt="Github" height="40"/>
                 </a>
+                <a href="https://www.linkedin.com/in/maewen-pelletier/">
+                    <img src="{{ url_for('static', filename='imgs/ln_logo.png') }}" alt="ln_logo" height="40"/>
+                </a>
+                <p class="my-2">2020 - Maewen Pelletier</p>
             </div>
-            <!-- Copyright -->
-        
         </footer>
-        <!-- Footer -->
     </div>
 
     <!-- jQuery first -->

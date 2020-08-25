@@ -1,5 +1,6 @@
 import requests
 from config import MAPS_API_KEY
+from pprint import pprint
 
 
 class ApiRequester():
@@ -38,7 +39,7 @@ class ApiRequester():
             r = r.json()
             for elem in (r['query']['pages']):
                 if elem == '-1':
-                    information = 'No data found with this request'
+                    information = ("Pas d'info ... verifiez l'écriture ? :) ")
                 else:
                     information = r['query']['pages'][elem]['extract']
 
@@ -53,7 +54,10 @@ class ApiRequester():
             address (str): Filtered Query
 
         Returns:
-            int, int: lat, lng used to place the marker on the map
+            lat(int), lng(int) used to place the marker on the map
+            address of the query
+            r (int) = response status
+            formated_adress (str) : the addresse of the query
         """
         r = requests.get(self.base_url_map,
                          params={
@@ -66,7 +70,8 @@ class ApiRequester():
         else:
             r = r.json()
             location = r["results"][0]["geometry"]["location"]
+            formated_address = r["results"][0]["formatted_address"]
             lat = location['lat']
             lng = location['lng']
 
-        return lat, lng, r
+        return lat, lng, r, formated_address
