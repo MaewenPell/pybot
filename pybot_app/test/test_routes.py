@@ -8,6 +8,9 @@ class TestReturnRoutes():
         r = requests.get(self.BASE_URL)
         assert r.status_code == 200
 
-    # def testProcess(self):
-    #     r = requests.get(self.BASE_URL + "/process")
-    #     print(r)
+    def testProcess(self):
+        data = "Salut pybot donnes moi des informations sur OpenClassrooms"
+        r = requests.post(self.BASE_URL + "/process",
+                          data)
+
+        assert r.status_code == 200

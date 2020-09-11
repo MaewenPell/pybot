@@ -1,6 +1,5 @@
 import requests
 from config import MAPS_API_KEY
-from pprint import pprint
 
 
 class ApiRequester():

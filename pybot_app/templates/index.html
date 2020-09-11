@@ -67,7 +67,9 @@
             </div>
         </div>
         <div id="map" class="col-8 mx-auto">
-        <script async defer src="https://maps.googleapis.com/maps/api/js?key={{ config['MAPS_API_KEY'] }}&callback=initMap"></script>
+        <!-- <script async defer src="https://maps.googleapis.com/maps/api/js?key={{ config['MAPS_API_KEY'] }}&callback=initMap"></script> -->
+        <script defer
+            src="https://maps.googleapis.com/maps/api/js?key={{ config['MAPS_API_KEY'] }}"></script>
         </div>
 
         <footer class="col-12">
