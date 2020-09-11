@@ -13,76 +13,78 @@
 </head>
 
 <body>
-    <div class='row col-12 mx-auto vh-100'>
-        <div class="container">
-            <div class="row">
-                <div class='col-1 my-2'>
-                    <img src="{{ url_for('static', filename='imgs/bot.svg') }}" class='img-fluid' alt="logo">
-                </div>
-                <div class="col-10 my-auto">
-                    <h3 class="my-auto">Pybot - The internet scrapper</h3>
-                </div>
-            </div>
-            <hr>
-            <div class="row">
-                <div class="col-8 mx-auto" id='chat-area'>
-                    <div class="row">
-                        <div id='bot_talk_area' class="col-8 rounded my-2 mx-auto">
-                            <h3 class="botName font-weight-bold text-center">Pybot</h3>
-                            <h6 class="botInfo brown-text font-weight-light text-center">The internet scrapper</h6>
-                            <p class="botTalk my-4">
-                                <span class="font-weight-bold">Hello !</span><br>
-                                Entrez un lieu et je vous trouverais la localisation et quelques informations dessus ! 
-                            </p>
-                        </div>
-                        <div class="col-2 my-auto" id='logo-pybot'>
-                            <img class="img-fluid" src="{{ url_for('static', filename='imgs/bot.svg') }}" alt="BotImage" height="100" width="100">
-                        </div>
-                    </div>
-                    <div class="row" id="loadingArea">
-                        <div class='mx-auto my-4 loading'>
-                            <img src="/static/imgs/loading.gif" alt="loading gif">
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <hr>
-            <div class="col-12">
-                <div class="row">
-                    <form id='NewItemForm' class="mx-auto form-inline">
-                        <div class="form-group text-center mx-auto">
-                            <input type="text" name='text' class="form-control" id="place" placeholder="Enter a location">
-                            <button type="submit" class="btn btn-info my-4">
-                                <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-search" fill="currentColor"
-                                    xmlns="http://www.w3.org/2000/svg">
-                                    <path fill-rule="evenodd"
-                                        d="M10.442 10.442a1 1 0 0 1 1.415 0l3.85 3.85a1 1 0 0 1-1.414 1.415l-3.85-3.85a1 1 0 0 1 0-1.415z" />
-                                    <path fill-rule="evenodd"
-                                        d="M6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11zM13 6.5a6.5 6.5 0 1 1-13 0 6.5 6.5 0 0 1 13 0z" />
-                                </svg>
-                            </button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-        <div id="map" class="col-8 mx-auto">
-        <!-- <script async defer src="https://maps.googleapis.com/maps/api/js?key={{ config['MAPS_API_KEY'] }}&callback=initMap"></script> -->
-        <script defer
-            src="https://maps.googleapis.com/maps/api/js?key={{ config['MAPS_API_KEY'] }}"></script>
-        </div>
 
-        <footer class="col-12">
-            <div class="text-center py-3" id="copyright">
-                <a href="https://github.com/MaewenPell/pybot">
-                    <img src="{{ url_for('static', filename='imgs/github_mark.png') }}" alt="Github" height="40"/>
-                </a>
-                <a href="https://www.linkedin.com/in/maewen-pelletier/">
-                    <img src="{{ url_for('static', filename='imgs/ln_logo.png') }}" alt="ln_logo" height="40"/>
-                </a>
-                <p class="my-2">2020 - Maewen Pelletier</p>
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-md-8 mx-auto">
+                <div class="row my-4 align-items-center">
+                    <div class='col-2 d-none d-md-block'>
+                        <img src="{{ url_for('static', filename='imgs/bot.svg') }}" class='img-fluid' alt="logo">
+                    </div>
+                    <div class="col-10">
+                        <h3 class="my-auto">Pybot - The internet scrapper</h3>
+                    </div>
+                </div>
+
+                <div class="card mb-4">
+                    <div class="card-body" id='chat-area'>
+                        <div class="row">
+                            <div id='bot_talk_area' class="col-10 col-md-8 rounded my-2 mx-auto">
+                                <h3 class="botName font-weight-bold text-center">Pybot &#129302;</h3>
+                                <h6 class="botInfo brown-text font-weight-light text-center">The internet scrapper</h6>
+                                <p class="botTalk my-4">
+                                    <span class="font-weight-bold">Bonjour</span><br>
+                                    Entrez votre requête et je vous donnerais des informations par exemple :
+                                    <br>
+                                    <span class="font-weight-bold">Salut Pybot donnes moi des informations et l'adresse
+                                        d'OpenClassrooms</span>
+                                </p>
+                            </div>
+                            <div class="col-2 my-auto d-none d-md-block" id='logo-pybot'>
+                                <img class="img-fluid" src="{{ url_for('static', filename='imgs/bot.svg') }}"
+                                    alt="BotImage" height="100" width="100">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <form id='NewItemForm' class="mx-auto form-inline">
+                            <div class="input-group text-center mx-auto">
+                                <input type="text" name='text' class="form-control" id="place"
+                                    placeholder="Enter a location">
+                                <div class="input-group-append">
+                                    <button type="submit" class="btn btn-info">
+                                        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-search"
+                                            fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                            <path fill-rule="evenodd"
+                                                d="M10.442 10.442a1 1 0 0 1 1.415 0l3.85 3.85a1 1 0 0 1-1.414 1.415l-3.85-3.85a1 1 0 0 1 0-1.415z" />
+                                            <path fill-rule="evenodd"
+                                                d="M6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11zM13 6.5a6.5 6.5 0 1 1-13 0 6.5 6.5 0 0 1 13 0z" />
+                                        </svg>
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <div id="map" class="card mb-4">
+                    <!-- <script async defer src="https://maps.googleapis.com/maps/api/js?key={{ config['MAPS_API_KEY'] }}&callback=initMap"></script> -->
+                    <script defer src="https://maps.googleapis.com/maps/api/js?key={{ config['MAPS_API_KEY'] }}">
+                    </script>
+                </div>
+
+                <footer class="mx-auto text-center py-3" id="copyright">
+                    <a href="https://github.com/MaewenPell/pybot">
+                        <img src="{{ url_for('static', filename='imgs/github_mark.png') }}" alt="Github" height="40" />
+                    </a>
+                    <a href="https://www.linkedin.com/in/maewen-pelletier/">
+                        <img src="{{ url_for('static', filename='imgs/ln_logo.png') }}" alt="ln_logo" height="40" />
+                    </a>
+                    <p class="my-2">2020 - Maewen Pelletier</p>
+                </footer>
+
             </div>
-        </footer>
+        </div>
     </div>
 
     <!-- jQuery first -->
