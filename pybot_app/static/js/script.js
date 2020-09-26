@@ -15,7 +15,8 @@ $(document).ready(function(){
     position: LatLng
   });
 
-  $('#NewItemForm').on('submit', function (e) {
+  $('#NewItemForm').on('submit', function (e)
+  {
     e.preventDefault();
     query = $('input:text').val();
     $.ajax({
@@ -27,7 +28,7 @@ $(document).ready(function(){
         information = data[1]
         lat = data[2]
         lng = data[3]
-        console.log(query)
+
         user_asking(query, chat_area, image_user)
         bot_reply(information, chat_area, bot_image);
         updateMap(lat, lng, map, marker);
@@ -40,13 +41,16 @@ $(document).ready(function(){
 
 });
 
-function bot_reply(reply, place, img) {
+function bot_reply(reply, place, img) 
+// Populate the text area with the reply of pybot
+// that is the return from the differents API
+{
   var text = "";
   text += '<div class="row">'
   text += '<div id="bot_talk_area" class="col-10 col-md-8 rounded my-2 mx-auto">';
   text += '<h3 class="botName font-weight-bold text-center">Pybot &#129302;</h3>';
   text += '<h6 class="botInfo brown-text font-weight-light text-center">The internet scrapper</h6>';
-  text += '<p>Hey ! J\'ai trouvé ça pour vous : </p>';
+  text += '<p>Hey ! Ca me fais penser à ça : </p>';
   text += '<p class="botTalk">' + reply + '</p>';
   text += '</div>';
   text += "<div class = 'col-2 my-auto d-none d-md-block' id='logo-pybot'>";
@@ -57,7 +61,9 @@ function bot_reply(reply, place, img) {
 }
 
 
-function user_asking(query, place, img) {
+function user_asking(query, place, img) 
+// Populate the text area with the query of the user
+{
   var text = "";
   text += '<div class="row">'
   text += "<div class = 'col-2 my-auto d-none d-md-block' id='logo-user'>";
@@ -71,8 +77,10 @@ function user_asking(query, place, img) {
   $(text).appendTo(place);
 }
 
+
+function initMap() 
 // Initialize and add the map
-function initMap() {
+{
   var LatLng = new google.maps.LatLng(-34.397, 150.644);
   var mapOptions = {
     zoom : 8,
@@ -83,7 +91,9 @@ function initMap() {
     return map
 }
 
-function updateMap(lat, lng, map, marker) {
+function updateMap(lat, lng, map, marker)
+// Upate the map regarding the lat and lng provided
+{
   LatLng = new google.maps.LatLng(lat, lng);
   marker.setPosition(LatLng)
   map.setCenter(LatLng);

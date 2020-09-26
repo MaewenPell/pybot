@@ -30,7 +30,6 @@ def process():
     query = escape(request.get_data(as_text=True))
     # Parse the query to retrieve the essentials words
 
-    # filtered_query, ad_wanted, info_wanted = parser.filter_words(str(query))
     filtered_query = parser.layer_filter(query)
     try:
         if len(filtered_query) > 1:
@@ -48,6 +47,9 @@ def process():
         informations = "... Pas d'info mais une anectdote : "
         informations += anectode.return_anectdote[randint(
             0, len(anectode.return_anectdote) - 1)]
+
     # Return the differents informations in a JSON format
+    informations = escape(informations)
+    print(informations)
     return jsonify(query, informations,
                    lat, lng)

@@ -14,6 +14,7 @@ class ListStopWords():
              "information",
              "informations",
              "ainsi",
+             "entendu",
              "ait",
              "allaient",
              "allo",
